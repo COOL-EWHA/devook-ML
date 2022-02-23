@@ -87,12 +87,11 @@ def text_preprocessing(pykomoran, text, stop_words):
     return ko_proper_nouns_str + " " + en_words_str_lower_case
 
 
-def text_classification(text):
+def text_classification(model, text):
     """
     전달된 데이터가 해당되는 카테고리 반환
-    param: [str]
+    param: model[FastText model], text[str]
     return: [str]
     """
-    model = fasttext.load_model("fasttext_model/model_devook_20220222.bin")
     result = model.predict(text)
     return result[0][0]

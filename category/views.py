@@ -1,4 +1,5 @@
 import ssl
+import fasttext
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -29,8 +30,8 @@ nltk.download("stopwords")
 
 class CategoryView(APIView):
     komoran = Komoran("EXP")
-
     stop_words = set(stopwords.words("english"))
+    model = fasttext.load_model("fasttext_model/model_devook_20220222.bin")
 
     def post(self, request, format=None):
         """
@@ -44,7 +45,7 @@ class CategoryView(APIView):
                 pykomoran=self.komoran, text=title, stop_words=self.stop_words
             )
             category = category_dict[
-                text_classification(text=preprocessed_str)
+                text_classification(model=self.model, text=preprocessed_str)
             ]  # 카테고리 분류 모델의 입력 값으로 전달
             return Response(data={"category": category}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
