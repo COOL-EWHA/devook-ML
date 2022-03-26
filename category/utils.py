@@ -8,7 +8,7 @@ category_dict = {
     "__label__javascript": "Javascript",
     "__label__java": "Java",
     "__label__bigdata-ai-ml": "빅데이터·AI·머신러닝",
-    "_label__react": "React",
+    "__label__react": "React",
     "__label__database": "Database",
     "__label__android": "Android",
     "__label__node-js": "Node.js",
