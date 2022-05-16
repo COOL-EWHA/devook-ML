@@ -31,7 +31,7 @@ nltk.download("stopwords")
 class CategoryView(APIView):
     komoran = Komoran("EXP")
     stop_words = set(stopwords.words("english"))
-    model = fasttext.load_model("fasttext_model/model_devook_20220222.bin")
+    model = fasttext.load_model("fasttext_model/model_devook_20220516.bin")
 
     def post(self, request, format=None):
         """
